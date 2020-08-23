@@ -7,9 +7,38 @@
     <script src="/js/vue.min.js"></script>
 </head>
 <body class="exercicio">
-
+  <!--template--> 
+<div id="app">   
+<!--utilizando expressoes js--> 
+<p>1) {{2+2}}</p>
+<p>2) {{"teste".toUpperCase()}}</p>
+<p>3) Produto: {{nome}}, R$ {{preco}}, {{desconto*100}}%</p>
+<!--chamando uma funcao--> 
+<p>4) Hora Certa: {{horaCerta()}}</p>
+<!--chamando valor retornado da funcao precoComDesconto em computed-->
+<p>5) Preco com desconto: R$: {{precoComDesconto}}</p>
+</div>
+<!--instanciando vuejs -->
     <script>
-        // ...
+        new Vue({
+//busca elemento renderizar
+         el: "#app",
+         data:{
+             nome: 'Caneta',
+             preco: '6.89',
+             desconto: 0.15
+         },
+         methods: {
+             horaCerta(){
+                 return new Date().toLocaleString()
+             }
+         },
+         computed:{
+             precoComDesconto(){
+                 return this.preco* (1-this.desconto)
+             }
+         }
+        })
     </script>
 </body>
 </html>
