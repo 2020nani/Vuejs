@@ -7,9 +7,38 @@
     <script src="/js/vue.min.js"></script>
 </head>
 <body class="exercicio">
-
+<div id="app">
+<p>{{link }}</p>
+<!--Modo que da erro p acessar link-->
+<p><a href="{{link}}">hojesim?hojenao </a></p>
+<!--usando binding(diretiva v-bind) p acessar link-->
+<p><a v-bind:href="link">Hoje sim</a></p>
+<!--usando binding(s/diretiva v-bind) p acessar link-->
+<p><a :href="link">Hoje sim de novo</a></p>
+<!--usando binding(diretiva v-model) input altera dados de data-->
+<p>
+    <input type="text" v-model="nome"><br>
+    <span>{{nome}}</span>
+</p>
+<!--usando binding(s/diretiva v-model) input chama o dado em data mas nao altera-->
+<p>
+    <input type="text" :value="nome"><br>
+    <span>{{nome}}</span>
+</p>
+</div>
     <script>
-        // ...
+        new Vue({
+            el: "#app",
+            data:{
+                nome: "Maria",
+                link: "https://youtube.com/cod3rcursos"
+            },
+            watch:{
+                nome(novoValor){
+                    console.log(novoValor.toUpperCase())
+                }
+            }
+        })
     </script>
 </body>
 </html>
